@@ -1,4 +1,4 @@
-name: CI Pipeline
+name: Basic CI Pipeline
 
 on:
   push:
@@ -7,12 +7,11 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
-    name: Build and Test
+  ci:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout 
+    - name: Checkout code
       uses: actions/checkout@v3
 
     - name: Set up Python
@@ -23,21 +22,21 @@ jobs:
     - name: Install Dependencies
       run: |
         pip install pytest flake8
-       
+
     - name: Run Tests
       run: |
-        pytest --maxfail=1 --disable-warnings -q
+        pytest
 
-    - name: Lint with Flake8
+    - name: Lint Code
       run: |
-        pip install flake8
-        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        flake8 .
 
-    - name: Build Artifact
+    - name: Build
       run: |
-        echo "Building your application..."  # Replace with actual build command
+        echo "Build stage (e.g., compiling, packaging)"
+        mkdir -p dist && echo "Build complete" > dist/output.txt
 
     - name: Deploy (Optional)
       if: github.ref == 'refs/heads/main'
       run: |
-        echo "Deploying application..."  # Replace with actual deployment script
+        echo "Simulating deployment..."
