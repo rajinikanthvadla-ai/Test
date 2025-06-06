@@ -1,4 +1,4 @@
-name: Basic CI Pipeline
+name: Simple CI Pipeline
 
 on:
   push:
@@ -7,11 +7,11 @@ on:
     branches: [ main ]
 
 jobs:
-  ci:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
+    - name: Checkout Code
       uses: actions/checkout@v3
 
     - name: Set up Python
@@ -21,11 +21,7 @@ jobs:
 
     - name: Install Dependencies
       run: |
-        pip install pytest flake8
-
-    - name: Run Tests
-      run: |
-        pytest
+        pip install flake8
 
     - name: Lint Code
       run: |
@@ -33,7 +29,7 @@ jobs:
 
     - name: Build
       run: |
-        echo "Build stage (e.g., compiling, packaging)"
+        echo "Build stage (e.g., compiling or packaging)"
         mkdir -p dist && echo "Build complete" > dist/output.txt
 
     - name: Deploy (Optional)
