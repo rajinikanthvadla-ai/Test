@@ -1,3 +1,3 @@
-this git branches are used to test the code?
-this git branches are used to test the code
-testing rejecting action
+"""Example script used for git branch testing."""
+
+print("Testing rejecting action")
